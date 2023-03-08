@@ -31,6 +31,11 @@ const setup = () => {
                         return;
                     }
 
+                    if(config.started[bot.name] && bot.singleton && config.started[bot.name].length > 0) {
+                        sendAlert("[Bots Manager] Bot: " + bot.name + " already started");
+                        return;
+                    }
+
                     const botProcess = fork(bot.path, message.args, {
                         detached: true,
                         stdio: "ignore",
